@@ -5,14 +5,15 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.nanda.model.Article;
+import com.nanda.model.SeedCategory;
 import com.nanda.util.ConnectionUtil;
 
 public class ArticleDao {
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
 	public int save(Article articleobj) {
 
-		String sql = "INSERT INTO ARTICLE(USER_ID,TITLE,CONTENT) VALUES(?,?,?);";
-		Object[] params = { articleobj.getUser_id().getId(),articleobj.getTitle(),articleobj.getContent() };
+		String sql = "INSERT INTO ARTICLE(USER_ID,TITLE,CONTENT,Article_category) VALUES(?,?,?,?);";
+		Object[] params = { articleobj.getUser_id().getId(),articleobj.getTitle(),articleobj.getContent(),articleobj.getCategoryId().getId() };
 		return jdbcTemplate.update(sql, params);
 		
 
@@ -33,11 +34,14 @@ public class ArticleDao {
 
 	}
 	public void list() {
-		final String sql = "Select Title,Content from Article";
+		final String sql = "Select Title,Content,Article_category from Article";
 		List<Article> a =jdbcTemplate.query(sql, (rs, rowNum) -> {
 		 Article obj=new Article();
 		 obj.setTitle(rs.getString("Title"));
 		 obj.setContent(rs.getString("Content"));
+		 SeedCategory seed=new SeedCategory();
+		 seed.getId();
+		 obj.setCategoryId(seed);
 			return obj;
 		});
 		for(Article ref:a)

@@ -20,6 +20,10 @@ public class ArticleValidator {
 		ValidationUtil.isNotValid(userId,"Invalid UserId");
 	}
 	
+	private void validateCategory(Integer userId)throws ValidationException{
+		ValidationUtil.isNotValid(userId,"Invalid Category");
+	}
+	
 	private void validateTitle(String name)throws ValidationException{
 		ValidationUtil.isNotValid(name,"Invalid Name");
 	}
@@ -38,6 +42,7 @@ public class ArticleValidator {
 		validateUserId(article.getUser_id().getId());
 		validateTitle(article.getTitle());
 		validateContent(article.getContent());
+		validateCategory(article.getCategoryId().getId());
 	}
 	
 	public void validateUpdate(Article article) throws ValidationException{
