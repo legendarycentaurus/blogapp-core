@@ -20,8 +20,15 @@ public class ArticleDao {
 	}
 	public int update(Article articleobj) {
 
-		String sql = "UPDATE ARTICLE SET TITLE=?,CONTENT=?,MODIFIED_DATE=? WHERE ID=?";
-		Object[] params = { articleobj.getTitle(), articleobj.getContent(),articleobj.getModified_Date(),articleobj.getId() };
+		String sql = "UPDATE ARTICLE SET TITLE=?,CONTENT=?,MODIFIED_DATE=? WHERE ID=? and user_id=?";
+		Object[] params = { articleobj.getTitle(), articleobj.getContent(),articleobj.getModified_Date(),articleobj.getId(),articleobj.getUser_id().getId() };
+		return jdbcTemplate.update(sql, params);
+
+	}
+	public int updateCategory(Article articleobj) {
+
+		String sql = "UPDATE ARTICLE SET Article_Category=? WHERE ID=? and user_id=?";
+		Object[] params = { articleobj.getCategoryId().getId(),articleobj.getId(),articleobj.getUser_id().getId() };
 		return jdbcTemplate.update(sql, params);
 
 	}
@@ -33,9 +40,9 @@ public class ArticleDao {
 		return jdbcTemplate.update(sql,params);
 
 	}
-	public void list() {
+	public List<Article> list() {
 		final String sql = "Select Title,Content,Article_category from Article";
-		List<Article> a =jdbcTemplate.query(sql, (rs, rowNum) -> {
+		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 		 Article obj=new Article();
 		 obj.setTitle(rs.getString("Title"));
 		 obj.setContent(rs.getString("Content"));
@@ -44,20 +51,31 @@ public class ArticleDao {
 		 obj.setCategoryId(seed);
 			return obj;
 		});
-		for(Article ref:a)
-			System.out.println(ref.getTitle()+"  "+ref.getContent());
+		
+
 	}
-	public void listMyArticle(int id) {
-		final String sql = "Select Title,Content from Article where id=?";
+	public List<Article> listMyArticle(int id) {
+		final String sql = "Select Title,Content from Article where user_id=?";
 		Object[] params={id};
-		List<Article> a =jdbcTemplate.query(sql, params,(rs, rowNum) -> {
+		return jdbcTemplate.query(sql, params,(rs, rowNum) -> {
 		 Article obj=new Article();
 		 obj.setTitle(rs.getString("Title"));
 		 obj.setContent(rs.getString("Content"));
 			return obj;
 		});
-		for(Article ref:a)
-			System.out.println(ref.getTitle()+"  "+ref.getContent());
+		
+	}
+	
+	public List<Article> listCatgorywise(int id) {
+		final String sql = "Select Title,Content from Article where article_category=?";
+		Object[] params={id};
+		return jdbcTemplate.query(sql, params,(rs, rowNum) -> {
+		 Article obj=new Article();
+		 obj.setTitle(rs.getString("Title"));
+		 obj.setContent(rs.getString("Content"));
+			return obj;
+		});
+		
 	}
 	
 }

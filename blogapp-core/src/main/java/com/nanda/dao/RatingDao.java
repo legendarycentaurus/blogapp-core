@@ -33,16 +33,15 @@ public int update(Rating obj) {
 		
 	
 }
-	public void list(int userId) {
+	public List<Rating> list(int userId) {
 		final String sql = "Select rating from ratings where user_id=?";
 		Object[] params={userId};
-		List<Rating> ratingRef =jdbcTemplate.query(sql,params,(rs, rowNum) -> {
+		return jdbcTemplate.query(sql,params,(rs, rowNum) -> {
 		 Rating obj=new Rating();
 		 obj.setRating((rs.getInt("Rating")));
 			return obj;
 		});
-		for(Rating ref:ratingRef)
-			System.out.println(ref.getRating());
+	
 	}
 }
 

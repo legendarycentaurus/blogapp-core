@@ -22,6 +22,18 @@ public class UserService {
 		}
 	}
 
+	
+	public String login(User user) throws ServiceException {
+		try {
+			userValidator.validateLogin(user);
+			String message=userDao.login(user);
+			return message;
+		} catch (ValidationException e) {
+			throw new ServiceException("Unable to Login",e);
+		}
+	}
+
+	
 	public void update(User user) throws ServiceException {
 		try {
 			userValidator.validateUpdate(user);

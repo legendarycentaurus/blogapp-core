@@ -5,12 +5,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
 
+
 public class UserDao {
+
 JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
 public int save(User obj) {
 	
-	String sql = "INSERT INTO USER(NAME,PASSWORD,EMAIL_ID) VALUES(?,?,?) ";
-	Object[] params = {obj.getName(),obj.getPassword(),obj.getEmailId() };
+	String sql = "INSERT INTO USER(NAME,PASSWORD,EMAIL_ID,role_id) VALUES(?,?,?,?) ";
+	Object[] params = {obj.getName(),obj.getPassword(),obj.getEmailId(),obj.getRoleId().getId() };
 	return  jdbcTemplate.update(sql, params);
 	
 	
@@ -28,6 +30,19 @@ public int delete(int id) {
 	String sql = "delete from User where id=?";
 	return jdbcTemplate.update(sql, id);
 	
+}
+public String login(User user){
+	String result;
+	String sql="SELECT IFNULL((SELECT 1 FROM USER WHERE NAME=? AND PASSWORD=?),NULL);";
+	Object[] params={ user.getName(),user.getPassword()};
+	Integer value=jdbcTemplate.queryForObject(sql,params, Integer.class);
+	if(value!=null){
+		result="Successful Login";
+	}
+	else {
+		result="Invalid Username or Password";
+		}
+	return result;
 }
 
 

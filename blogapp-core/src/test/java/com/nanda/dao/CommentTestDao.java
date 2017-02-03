@@ -1,5 +1,7 @@
 package com.nanda.dao;
 
+import java.util.List;
+
 import com.nanda.exception.ServiceException;
 import com.nanda.model.Article;
 import com.nanda.model.Comment;
@@ -9,7 +11,6 @@ import com.nanda.service.CommentService;
 public class CommentTestDao {
 public static void main(String[] args) throws ServiceException {
 	CommentService commentServiceObj=new CommentService();
-	CommentDao commentDaoObj=new CommentDao();
 	Comment commentObj=new Comment();
 	Article articleObj=new Article();
 	User userObj=new User();
@@ -23,7 +24,10 @@ public static void main(String[] args) throws ServiceException {
 	commentObj.setId(6);
 	commentServiceObj.delete(commentObj);
 	
-	commentDaoObj.list(4);
+	List<Comment> commentRef=commentServiceObj.list(4);
+	for(Comment ref:commentRef)
+		System.out.println(ref.getComments());
+
 }
 	
 }

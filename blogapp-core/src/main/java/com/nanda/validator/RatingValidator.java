@@ -21,7 +21,9 @@ public class RatingValidator {
 	private void validateUserId(Integer userId)throws ValidationException{
 		ValidationUtil.isNotValid(userId,"Invalid UserId");
 	}
-	
+	public void validateUser(Integer userId)throws ValidationException{
+		ValidationUtil.isNotValid(userId,"Invalid UserId");
+	}
 	private void validateRating(Integer rating)throws ValidationException{
 		ValidationUtil.isNotValid(rating,"Invalid Comment");
 	}

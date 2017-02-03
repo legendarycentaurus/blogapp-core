@@ -14,6 +14,7 @@ public class UserValidator {
 		ValidationUtil.isNotValid(id,"Invalid Id");
 	}
 	
+	
 	private void validateName(String name)throws ValidationException{
 		ValidationUtil.isNotValid(name,"Invalid Name");
 	}
@@ -26,6 +27,7 @@ public class UserValidator {
 		ValidationUtil.isNotValid(password,"Invalid Password");
 	}
 	
+	
 	private void validateEmailId(String emailId)throws ValidationException{
 		ValidationUtil.isNotValid(emailId,"Invalid EmailID");
 	}
@@ -33,9 +35,14 @@ public class UserValidator {
 	public void validateSave(User user) throws ValidationException{
 		validateUser(user);
 		validateName(user.getName());
-		validateUserName(user.getName());
 		validatePassword(user.getPassword());
 		validateEmailId(user.getEmailId());
+		validateId(user.getRoleId().getId());	}
+	
+	public void validateLogin(User user) throws ValidationException{
+		validateUser(user);
+		validateUserName(user.getName());
+		validatePassword(user.getPassword());
 		
 	}
 	
@@ -47,8 +54,8 @@ public class UserValidator {
 	
 	public void validateDelete(User user) throws ValidationException{
 		validateUser(user);
-		
 		validateId(user.getId());
+		
 	}
 
 	

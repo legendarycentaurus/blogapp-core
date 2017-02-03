@@ -1,5 +1,6 @@
 package com.nanda.service;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,6 +36,10 @@ public class CommentService {
 			throw new ServiceException("Unable to Delete",e);
 		}
 	}
+	public List<Comment> list(int id){
+		return CommentDao.list(id);
 	
+		}
+
 	
 }

@@ -1,5 +1,6 @@
 package com.nanda.service;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,9 +19,9 @@ public class ArticleService {
 		try {
 			articleValidator.validateSave(article);
 			int rows=articleDao.save(article);
-			logger.log(Level.SEVERE, "You have been Signedup: %d ", rows);
+			logger.log(Level.SEVERE, "Successfully posted: %d ", rows);
 		} catch (ValidationException e) {
-			throw new ServiceException("Unable to Register",e);
+			throw new ServiceException("Unable to Post",e);
 		}
 	}
 
@@ -43,5 +44,36 @@ public class ArticleService {
 			throw new ServiceException("Unable to Delete",e);
 		}
 	}
+	public List<Article> list(){
+		return articleDao.list();
+		
+	}
+	
+	public List<Article> listMyArticle(int id) throws ServiceException{
+		try {
+			articleValidator.validateId(id);
+		} catch (ValidationException e) {
+			throw new ServiceException("No articles found");
+		}
+		return articleDao.listMyArticle(id);	
+		}
+	public List<Article> listCategorywise(int id) throws ServiceException{
+		try {
+			articleValidator.validateId(id);
+		} catch (ValidationException e) {
+			throw new ServiceException("No articles found");
+		}
+		return articleDao.listCatgorywise(id);
+	}
 
+	public int updateCategory(Article article) throws ServiceException{
+		try {
+			articleValidator.validateCategoryUpdate(article);
+			int rows=articleDao.updateCategory(article);
+			return rows;
+		} catch (ValidationException e) {
+			throw new ServiceException("Unable to Update",e);
+		}
+	
+}
 }

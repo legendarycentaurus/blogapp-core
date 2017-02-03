@@ -1,5 +1,6 @@
 package com.nanda.service;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,5 +46,12 @@ public class RatingService {
 		}
 	}
 	
-	
+	public List<Rating> list(int userId)throws ServiceException{
+		try {
+			RatingValidator.validateUser(userId);
+		} catch (ValidationException e) {
+			throw new ServiceException("No Ratings found");
+		}
+		return RatingDao.list(userId);
+	}
 }

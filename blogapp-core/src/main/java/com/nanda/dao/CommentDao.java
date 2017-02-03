@@ -24,16 +24,15 @@ public class CommentDao {
 		String sql = "delete from Comments where id=?";
 		return jdbcTemplate.update(sql, id);
 }
-	public void list(int id) {
+	public List<Comment> list(int id) {
 		final String sql = "Select comments from Comments where id=?";
 		Object[] params={id};
-		List<Comment> commentRef =jdbcTemplate.query(sql,params,(rs, rowNum) -> {
+		return jdbcTemplate.query(sql,params,(rs, rowNum) -> {
 		 Comment obj=new Comment();
 		 obj.setComments(rs.getString("Comments"));
 			return obj;
 		});
-		for(Comment ref:commentRef)
-			System.out.println(ref.getComments());
-	}
+	
+			}
 }
 
