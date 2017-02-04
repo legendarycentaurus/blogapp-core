@@ -5,15 +5,14 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.nanda.model.Article;
-import com.nanda.model.SeedCategory;
 import com.nanda.util.ConnectionUtil;
 
 public class ArticleDao {
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
 	public int save(Article articleobj) {
 
-		String sql = "INSERT INTO ARTICLE(USER_ID,TITLE,CONTENT,Article_category) VALUES(?,?,?,?);";
-		Object[] params = { articleobj.getUser_id().getId(),articleobj.getTitle(),articleobj.getContent(),articleobj.getCategoryId().getId() };
+		String sql = "INSERT INTO ARTICLE(USER_ID,TITLE,CONTENT) VALUES(?,?,?);";
+		Object[] params = { articleobj.getUser_id().getId(),articleobj.getTitle(),articleobj.getContent() };
 		return jdbcTemplate.update(sql, params);
 		
 
@@ -25,14 +24,7 @@ public class ArticleDao {
 		return jdbcTemplate.update(sql, params);
 
 	}
-	public int updateCategory(Article articleobj) {
-
-		String sql = "UPDATE ARTICLE SET Article_Category=? WHERE ID=? and user_id=?";
-		Object[] params = { articleobj.getCategoryId().getId(),articleobj.getId(),articleobj.getUser_id().getId() };
-		return jdbcTemplate.update(sql, params);
-
-	}
-
+	
 	public int delete(int id,int userId) {
 
 		String sql = "delete from Article where id=? and user_id=?";
@@ -46,10 +38,7 @@ public class ArticleDao {
 		 Article obj=new Article();
 		 obj.setTitle(rs.getString("Title"));
 		 obj.setContent(rs.getString("Content"));
-		 SeedCategory seed=new SeedCategory();
-		 seed.getId();
-		 obj.setCategoryId(seed);
-			return obj;
+		return obj;
 		});
 		
 

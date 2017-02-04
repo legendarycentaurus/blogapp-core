@@ -66,14 +66,5 @@ public class ArticleService {
 		return articleDao.listCatgorywise(id);
 	}
 
-	public int updateCategory(Article article) throws ServiceException{
-		try {
-			articleValidator.validateCategoryUpdate(article);
-			int rows=articleDao.updateCategory(article);
-			return rows;
-		} catch (ValidationException e) {
-			throw new ServiceException("Unable to Update",e);
-		}
 	
-}
 }

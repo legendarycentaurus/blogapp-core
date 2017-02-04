@@ -1,12 +1,14 @@
 package com.nanda.service;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import com.nanda.dao.UserDao;
-import com.nanda.validator.UserValidator;
-import com.nanda.model.User;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
+import com.nanda.model.User;
+import com.nanda.validator.UserValidator;
 public class UserService {
 	
 	private UserValidator userValidator = new UserValidator();
@@ -54,8 +56,12 @@ public class UserService {
 		}
 	}
 	
-	
+	public List<User> list(){
+		return userDao.list();
+	}
 
-	
+	public List<User> listParticularUser(int id){
+		return userDao.listParticularUser(id);
+	}
 	
 }
