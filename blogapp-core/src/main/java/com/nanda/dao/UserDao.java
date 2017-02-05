@@ -58,6 +58,7 @@ public String login(User user){
 			return obj;
 		});
 			}
+	
 	public List<User> listParticularUser(int id) {
 		final String sql = "Select Name,Password,Email_id from User where id=?";
 		Object[] params={id};

@@ -10,5 +10,6 @@ private User user_id;
 private String title,content;
 private LocalDateTime createdDate,modified_Date;
 private Byte active;
+private SeedCategory seedCategory;
 
 }

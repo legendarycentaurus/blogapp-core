@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.nanda.model.Article;
 import com.nanda.model.SeedCategory;
 import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
@@ -45,22 +44,6 @@ public class SeedCategoryDao {
 		});
 		}
 	
-//	public void saveArticleCategory(SeedCategory sc,Article a ){
-//		String sql="INSERT INTO ARTICLE(USER_ID,TITLE,CONTENT) VALUES(?,?,?);";
-//		Object[] params={ a.getUser_id().getId(),a.getTitle(),a.getContent() };
-//		 jdbcTemplate.update(sql, params);
-//		 sql="select give_category_id(?,?)";
-//		Object[] param={a.getTitle(),a.getUser_id().getId()};
-//		Integer articleId=jdbcTemplate.queryForObject(sql,param,Integer.class);
-//		if(articleId!=0){
-//			sql="insert into Article_category(article_id,Category_id) values(?,?) ";
-//		Object[] args={articleId,sc.getId()};
-//		jdbcTemplate.update(sql,args);
-//		}
-//		else{
-//		System.out.println("Invalid Category");
-//		}
-//			
-//	}
+
 	
 }

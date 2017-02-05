@@ -25,7 +25,7 @@ public class CommentDao {
 		return jdbcTemplate.update(sql, id);
 }
 	public List<Comment> list(int id) {
-		final String sql = "Select comments from Comments where id=?";
+		final String sql = "Select comments from Comments where Article_id=?";
 		Object[] params={id};
 		return jdbcTemplate.query(sql,params,(rs, rowNum) -> {
 		 Comment obj=new Comment();

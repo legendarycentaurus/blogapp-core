@@ -8,6 +8,7 @@ import com.nanda.dao.ArticleDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
 import com.nanda.model.Article;
+import com.nanda.model.SeedCategory;
 import com.nanda.validator.ArticleValidator;
 public class ArticleService {
 
@@ -15,10 +16,10 @@ public class ArticleService {
 	private ArticleDao articleDao=new ArticleDao();
 	private final Logger logger = Logger.getLogger(ArticleService.class.getName());
 
-	public void save(Article article) throws ServiceException {
+	public void publishArticle(Article article,SeedCategory seed) throws ServiceException {
 		try {
 			articleValidator.validateSave(article);
-			int rows=articleDao.save(article);
+			int rows=articleDao.save(article,seed);
 			logger.log(Level.SEVERE, "Successfully posted: %d ", rows);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Post",e);

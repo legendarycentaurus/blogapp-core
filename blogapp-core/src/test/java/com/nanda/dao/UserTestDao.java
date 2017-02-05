@@ -12,21 +12,22 @@ public class UserTestDao {
 	
 		User userObj=new User();
 		UserService userServiceObj=new UserService();
-		userObj.setName(" Ragav");
-		userObj.setPassword("jas");
+		userObj.setName(" Admin");
+		userObj.setPassword("Admin");
 		Role roleobj=new Role();
 		roleobj.setId(2);
 		userObj.setRoleId(roleobj);
-		userObj.setEmailId("Ragavemail");
+		userObj.setEmailId("Adminemail");
+		userServiceObj.signup(userObj);
 		
-		//userServiceObj.signup(userObj);
+		
 		System.out.println(userServiceObj.login(userObj));
 		
-		userObj.setId(589);
+		userObj.setId(18);
 		userObj.setPassword("pavan");
 		userServiceObj.update(userObj);
 		
-		userObj.setId(6);
+		userObj.setId(20);
 		userServiceObj.delete(userObj);
 	
 	
