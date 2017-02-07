@@ -41,6 +41,8 @@ public int update(Rating obj) {
 		 obj.setRating((rs.getInt("Rating")));
 			return obj;
 		});
+		
+		
 	
 	}
 }

@@ -12,14 +12,14 @@ import com.nanda.validator.RatingValidator;
 
 public class RatingService {
 
-	private RatingValidator RatingValidator = new RatingValidator();
-	private RatingDao RatingDao=new RatingDao();
+	private RatingValidator ratingValidator = new RatingValidator();
+	private RatingDao ratingDao=new RatingDao();
 	private final Logger logger = Logger.getLogger(RatingService.class.getName());
 
 	public void save(Rating Rating) throws ServiceException {
 		try {
-			RatingValidator.validateSave(Rating);
-			int rows=RatingDao.save(Rating);
+			ratingValidator.validateSave(Rating);
+			int rows=ratingDao.save(Rating);
 			logger.log(Level.SEVERE, "You have been Signedup: %d ", rows);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Register",e);
@@ -28,8 +28,8 @@ public class RatingService {
 
 	public void update(Rating Rating) throws ServiceException {
 		try {
-			RatingValidator.validateUpdate(Rating);
-			int rows=RatingDao.update(Rating);
+			ratingValidator.validateUpdate(Rating);
+			int rows=ratingDao.update(Rating);
 			logger.log(Level.SEVERE, "You have been Signedup: %d ", rows);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Register",e);
@@ -38,8 +38,8 @@ public class RatingService {
 	
 	public void delete(Rating Rating) throws ServiceException {
 		try {
-			RatingValidator.validateDelete(Rating);
-			int rows=RatingDao.delete(Rating.getId());
+			ratingValidator.validateDelete(Rating);
+			int rows=ratingDao.delete(Rating.getId());
 			logger.log(Level.SEVERE, "Deleted %d",rows);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Delete",e);
@@ -48,10 +48,10 @@ public class RatingService {
 	
 	public List<Rating> list(int userId)throws ServiceException{
 		try {
-			RatingValidator.validateUser(userId);
+			ratingValidator.validateUser(userId);
 		} catch (ValidationException e) {
 			throw new ServiceException("No Ratings found");
 		}
-		return RatingDao.list(userId);
+		return ratingDao.list(userId);
 	}
 }

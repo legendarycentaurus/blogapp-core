@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class Article {
 private int id;
-private User user_id;
+private User userid;
 private String title,content;
-private LocalDateTime createdDate,modified_Date;
+private LocalDateTime createdDate,modifiedDate;
 private Byte active;
 private SeedCategory seedCategory;
 

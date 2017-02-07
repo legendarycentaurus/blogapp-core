@@ -39,7 +39,7 @@ public class ArticleValidator {
 	
 	public void validateSave(Article article) throws ValidationException{
 		validateArticle(article);
-		validateUserId(article.getUser_id().getId());
+		validateUserId(article.getUserid().getId());
 		validateTitle(article.getTitle());
 		validateContent(article.getContent());
 		}
@@ -47,7 +47,7 @@ public class ArticleValidator {
 	public void validateUpdate(Article article) throws ValidationException{
 		validateArticle(article);
 		validateId(article.getId());
-		validateModifiedDate(article.getModified_Date());
+		validateModifiedDate(article.getModifiedDate());
 		validateContent(article.getContent());
 	}
 	
@@ -62,7 +62,7 @@ public class ArticleValidator {
 	public void validateCategoryUpdate(Article article) throws ValidationException{
 		validateArticle(article);
 		validateId(article.getId());
-		validateId(article.getUser_id().getId());
+		validateId(article.getUserid().getId());
 	
 	}
 	

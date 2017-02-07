@@ -12,8 +12,8 @@ public class UserTestDao {
 	
 		User userObj=new User();
 		UserService userServiceObj=new UserService();
-		userObj.setName(" Admin");
-		userObj.setPassword("Admin");
+		userObj.setName("pavan");
+		userObj.setPassword("asdf");
 		Role roleobj=new Role();
 		roleobj.setId(2);
 		userObj.setRoleId(roleobj);

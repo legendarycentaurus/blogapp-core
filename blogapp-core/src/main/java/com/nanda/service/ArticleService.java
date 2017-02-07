@@ -39,7 +39,7 @@ public class ArticleService {
 	public void delete(Article article) throws ServiceException {
 		try {
 			articleValidator.validateDelete(article);
-			int rows=articleDao.delete(article.getId(),article.getUser_id().getId());
+			int rows=articleDao.delete(article.getId(),article.getUserid().getId());
 			logger.log(Level.SEVERE, "Deleted %d",rows);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Delete",e);

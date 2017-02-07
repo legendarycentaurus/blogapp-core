@@ -60,10 +60,11 @@ public String login(User user){
 			}
 	
 	public List<User> listParticularUser(int id) {
-		final String sql = "Select Name,Password,Email_id from User where id=?";
+		final String sql = "Select id,Name,Password,Email_id from User where id=?";
 		Object[] params={id};
 		return jdbcTemplate.query(sql, params,(rs, rowNum) -> {
 		 User obj=new User();
+		 obj.setId(rs.getInt("id"));
 		 obj.setName(rs.getString("Name"));
 		 obj.setPassword(rs.getString("Password"));
 		 obj.setEmailId(rs.getString("Email_id"));

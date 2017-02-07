@@ -20,7 +20,7 @@ public class ArticleTestDao {
 		User userobj = new User();
 
 		userobj.setId(9);//set userid
-		articleobj.setUser_id(userobj);
+		articleobj.setUserid(userobj);
 		articleobj.setTitle("cvb");
 		articleobj.setContent("cvb");
 		as.publishArticle(articleobj,seed);
@@ -28,7 +28,7 @@ public class ArticleTestDao {
 
 		articleobj.setId(1);
 		userobj.setId(1);
-		articleobj.setUser_id(userobj);
+		articleobj.setUserid(userobj);
 		
 		List<Article> list=as.list();
 		for(Article x: list)
