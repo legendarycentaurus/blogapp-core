@@ -33,18 +33,10 @@ public int delete(int id) {
 	return jdbcTemplate.update(sql, id);
 	
 }
-public String login(User user){
-	String result;
-	String sql="SELECT IFNULL((SELECT 1 FROM USER WHERE NAME=? AND PASSWORD=?),NULL);";
+public Integer login(User user){
+	String sql="SELECT is_present(?,?)";
 	Object[] params={ user.getName(),user.getPassword()};
-	Integer value=jdbcTemplate.queryForObject(sql,params, Integer.class);
-	if(value!=null){
-		result="Successful Login";
-	}
-	else {
-		result="Invalid Username or Password";
-		}
-	return result;
+	return jdbcTemplate.queryForObject(sql,params, Integer.class);
 }
 
 	public List<User> list() {

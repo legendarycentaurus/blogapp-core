@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.dao.DuplicateKeyException;
+
 import com.nanda.dao.UserDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
@@ -14,7 +16,7 @@ public class UserService {
 	private UserValidator userValidator = new UserValidator();
 	private UserDao userDao=new UserDao();
 	private final Logger logger = Logger.getLogger(UserValidator.class.getName());
-	public void signup(User user) throws ServiceException {
+	public void signup(User user) throws ServiceException,DuplicateKeyException {
 		try {
 			userValidator.validateSave(user);
 			int rows=userDao.save(user);
@@ -22,14 +24,16 @@ public class UserService {
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Register",e);
 		}
+		catch(DuplicateKeyException e){
+			throw new DuplicateKeyException("Register failed",e);
+		}
 	}
 
 	
-	public String login(User user) throws ServiceException {
+	public Integer login(User user) throws ServiceException {
 		try {
 			userValidator.validateLogin(user);
-			String message=userDao.login(user);
-			return message;
+			return userDao.login(user);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Login",e);
 		}

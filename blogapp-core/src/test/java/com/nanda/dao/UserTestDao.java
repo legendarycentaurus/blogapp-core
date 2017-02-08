@@ -12,8 +12,8 @@ public class UserTestDao {
 	
 		User userObj=new User();
 		UserService userServiceObj=new UserService();
-		userObj.setName("pavan");
-		userObj.setPassword("asdf");
+		userObj.setName("aser");
+		userObj.setPassword("aser");
 		Role roleobj=new Role();
 		roleobj.setId(2);
 		userObj.setRoleId(roleobj);
@@ -42,6 +42,6 @@ public class UserTestDao {
 	
 	}
 	
-	
-	
+
+
 }

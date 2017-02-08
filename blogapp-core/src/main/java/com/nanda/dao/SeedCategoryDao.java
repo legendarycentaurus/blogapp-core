@@ -20,8 +20,8 @@ public class SeedCategoryDao {
 	}
 	public int update(SeedCategory obj) {
 		
-		String sql = "UPDATE SeedCategory set Category=? where id=?";
-		Object[] params = { obj.getCategory(),obj.getId()};
+		String sql = "UPDATE SeedCategory set Category=? where id=? and userId=?";
+		Object[] params = { obj.getCategory(),obj.getId(),obj.getUserId().getId()};
 		return jdbcTemplate.update(sql, params);
 		
 	}
@@ -33,13 +33,14 @@ public class SeedCategoryDao {
 }
 
 	public List<SeedCategory> list() {
-		final String sql = "Select category,userid from SeedCategory";
+		final String sql = "Select id,category,userid from SeedCategory";
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 		 SeedCategory obj=new SeedCategory();
 		 obj.setCategory(rs.getString("Category"));
 		 User userObj=new User();
 		 userObj.setId(rs.getInt("Userid"));
 		 obj.setUserId(userObj);
+		 obj.setId(rs.getInt("id"));
 			return obj;
 		});
 		}
