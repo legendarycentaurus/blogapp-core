@@ -13,8 +13,8 @@ public class UserDao {
 JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
 public int save(User obj) {
 	
-	String sql = "INSERT INTO USER(NAME,PASSWORD,EMAIL_ID,role_id) VALUES(?,?,?,?) ";
-	Object[] params = {obj.getName(),obj.getPassword(),obj.getEmailId(),obj.getRoleId().getId() };
+	String sql = "INSERT INTO USER(NAME,PASSWORD,EMAIL_ID) VALUES(?,?,?) ";
+	Object[] params = {obj.getName(),obj.getPassword(),obj.getEmailId() };
 	return  jdbcTemplate.update(sql, params);
 	
 	
@@ -23,6 +23,13 @@ public int update(User obj) {
 	
 	String sql = "UPDATE User set password=? where id=?";
 	Object[] params = {obj.getPassword(),obj.getId() };
+	return  jdbcTemplate.update(sql, params);
+	
+}
+public int roleByAdmin(User obj) {
+	
+	String sql = "UPDATE User set Role_id=? where id=?";
+	Object[] params = {obj.getRoleId().getId(),obj.getId() };
 	return  jdbcTemplate.update(sql, params);
 	
 }

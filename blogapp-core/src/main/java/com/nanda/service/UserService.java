@@ -38,6 +38,14 @@ public class UserService {
 			throw new ServiceException("Unable to Login",e);
 		}
 	}
+	public Integer roleByAdmin(User user) throws ServiceException {
+		try {
+			userValidator.validateUpdate(user);
+			return userDao.roleByAdmin(user);
+		} catch (ValidationException e) {
+			throw new ServiceException("Unable to Update",e);
+		}
+	}
 
 	
 	public void update(User user) throws ServiceException {

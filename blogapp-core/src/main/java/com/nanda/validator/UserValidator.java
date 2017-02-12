@@ -57,6 +57,11 @@ public class UserValidator {
 		validateId(user.getId());
 		
 	}
+	public void validateRoleByAdmin(User user) throws ValidationException{
+		validateUser(user);
+		validateId(user.getId());
+		validateId(user.getRoleId().getId());
+	}
 
 	
 }
