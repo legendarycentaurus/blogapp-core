@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.nanda.model.Role;
 import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
 
@@ -58,15 +59,18 @@ public Integer login(User user){
 		});
 			}
 	
-	public List<User> listParticularUser(int id) {
-		final String sql = "Select id,Name,Password,Email_id from User where id=?";
-		Object[] params={id};
-		return jdbcTemplate.query(sql, params,(rs, rowNum) -> {
+	public User listParticularUser(String Name) {
+		final String sql = "Select id,Name,Password,Email_id from User where Name=?";
+		Object[] params={Name};
+		return jdbcTemplate.queryForObject(sql, params,(rs, rowNum) -> {
 		 User obj=new User();
 		 obj.setId(rs.getInt("id"));
 		 obj.setName(rs.getString("Name"));
 		 obj.setPassword(rs.getString("Password"));
 		 obj.setEmailId(rs.getString("Email_id"));
+		 Role r=new Role();
+		 r.setId(rs.getInt("id"));
+		 obj.setRoleId(r);
 			return obj;
 		});
 			}	

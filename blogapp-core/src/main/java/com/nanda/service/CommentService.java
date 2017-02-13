@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.commons.mail.EmailException;
+
 import com.nanda.dao.CommentDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
@@ -16,13 +18,16 @@ public class CommentService {
 	private CommentDao CommentDao=new CommentDao();
 	private final Logger logger = Logger.getLogger(CommentService.class.getName());
 
-	public void save(Comment comment) throws ServiceException {
+	public void save(Comment comment) throws ServiceException,EmailException {
 		try {
 			CommentValidator.validateSave(comment);
 			int rows=CommentDao.save(comment);
-			logger.log(Level.SEVERE, "You have been Signedup: %d ", rows);
+			logger.log(Level.SEVERE, "You have made Comment: %d ", rows);
 		} catch (ValidationException e) {
-			throw new ServiceException("Unable to Register",e);
+			throw new ServiceException("Unable to Comment",e);
+		}
+		catch (EmailException e) {
+			throw new ServiceException("Unable to send Mail",e);
 		}
 	}
 

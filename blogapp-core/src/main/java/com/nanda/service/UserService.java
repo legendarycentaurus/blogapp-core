@@ -48,11 +48,10 @@ public class UserService {
 	}
 
 	
-	public void update(User user) throws ServiceException {
+	public Integer update(User user) throws ServiceException {
 		try {
 			userValidator.validateUpdate(user);
-			int rows=userDao.update(user);
-			logger.log(Level.SEVERE, "Values are updated: %d",rows);
+			return userDao.update(user);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Update",e);
 		}
@@ -72,8 +71,8 @@ public class UserService {
 		return userDao.list();
 	}
 
-	public List<User> listParticularUser(int id){
-		return userDao.listParticularUser(id);
+	public User listParticularUser(String Name){
+		return userDao.listParticularUser(Name);
 	}
 	
 }

@@ -2,18 +2,22 @@ package com.nanda.dao;
 
 import java.util.List;
 
+import org.apache.commons.mail.EmailException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.nanda.model.Comment;
 import com.nanda.util.ConnectionUtil;
+import com.nanda.util.MailUtil;
 
 public class CommentDao {
 
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
-	public int save(Comment obj) {
+	
+	public int save(Comment obj) throws EmailException {
 		
 		String sql = "INSERT INTO Comments(article_id,User_id,Comments) values(?,?,?)";
 		Object[] params = {obj.getArticleId().getId() ,obj.getUserId().getId(),obj.getComments()};
+		MailUtil.sendSimpleMail(obj.getComments(),"nanda220896@gmail.com","legendarycentaurus");
 		return jdbcTemplate.update(sql, params);
 		
 	}

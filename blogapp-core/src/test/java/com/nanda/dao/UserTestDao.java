@@ -35,9 +35,9 @@ public class UserTestDao {
 	for(User ref:u)
 		System.out.println(ref.getName()+"  "+ref.getPassword()+"  "+ref.getEmailId());
 
-	List<User> ua=userServiceObj.listParticularUser(9);
-	for(User ref:ua)
-		System.out.println(ref.getName()+"  "+ref.getPassword()+"  "+ref.getEmailId());
+	User ua=userServiceObj.listParticularUser("james");
+
+		System.out.println(ua);
 
 	
 	}

@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.nanda.model.Article;
 import com.nanda.model.SeedCategory;
+import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
 
 public class ArticleDao {
@@ -68,11 +69,14 @@ public class ArticleDao {
 
 	}
 	public List<Article> list() {
-		final String sql = "Select Title,Content from Article";
+		final String sql = "Select Title,Content,user_id from Article";
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 		 Article obj=new Article();
 		 obj.setTitle(rs.getString("Title"));
 		 obj.setContent(rs.getString("Content"));
+		 User userid=new User();
+		 userid.setId(rs.getInt("user_id"));
+		 obj.setUserid(userid);
 		return obj;
 		});
 		
