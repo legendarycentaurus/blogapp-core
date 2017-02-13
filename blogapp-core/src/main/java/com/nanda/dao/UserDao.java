@@ -22,8 +22,8 @@ public int save(User obj) {
 }
 public int update(User obj) {
 	
-	String sql = "UPDATE User set password=? where id=?";
-	Object[] params = {obj.getPassword(),obj.getId() };
+	String sql = "UPDATE User set password=? where name=?";
+	Object[] params = {obj.getPassword(),obj.getName() };
 	return  jdbcTemplate.update(sql, params);
 	
 }

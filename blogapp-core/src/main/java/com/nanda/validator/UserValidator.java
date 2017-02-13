@@ -48,7 +48,7 @@ public class UserValidator {
 	
 	public void validateUpdate(User user) throws ValidationException{
 		validateUser(user);
-		validateId(user.getId());
+		validateUserName(user.getName());
 		validatePassword(user.getPassword());
 	}
 	
