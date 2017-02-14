@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.nanda.model.Article;
 import com.nanda.model.Rating;
+import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
 
 public class RatingDao {
@@ -20,8 +22,8 @@ public class RatingDao {
 	
 public int update(Rating obj) {
 		
-		String sql = "update Ratings set rating=?  where Article_id=?";
-		Object[] params = {obj.getRating(),obj.getArticleId().getId()};
+		String sql = "update Ratings set rating=?  where id=?";
+		Object[] params = {obj.getRating(),obj.getId()};
 		return jdbcTemplate.update(sql, params);
 		
 	}
@@ -34,11 +36,18 @@ public int update(Rating obj) {
 	
 }
 	public List<Rating> list(int userId) {
-		final String sql = "Select rating from ratings where user_id=?";
+		final String sql = "Select id,rating,Article_id,User_id from ratings where user_id=?";
 		Object[] params={userId};
 		return jdbcTemplate.query(sql,params,(rs, rowNum) -> {
 		 Rating obj=new Rating();
+		 Article articleObj=new Article();
+		 articleObj.setId((rs.getInt("Article_id")));
+		 obj.setArticleId(articleObj);
+		 User userObj=new User();
+		 userObj.setId(rs.getInt("user_id"));
+		 obj.setUserId(userObj);
 		 obj.setRating((rs.getInt("Rating")));
+		 obj.setId(rs.getInt("id"));
 			return obj;
 		});
 		

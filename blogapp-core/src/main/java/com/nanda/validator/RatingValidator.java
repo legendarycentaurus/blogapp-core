@@ -38,7 +38,7 @@ public class RatingValidator {
 	public void validateUpdate(Rating Rating) throws ValidationException{
 		validateRating(Rating);
 		validateId(Rating.getId());
-		validateArticleId(Rating.getArticleId().getId());
+		
 	}
 	
 	public void validateDelete(Rating Rating) throws ValidationException{
