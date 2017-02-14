@@ -37,7 +37,7 @@ public class UserValidator {
 		validateName(user.getName());
 		validatePassword(user.getPassword());
 		validateEmailId(user.getEmailId());
-		validateId(user.getRoleId().getId());	}
+			}
 	
 	public void validateLogin(User user) throws ValidationException{
 		validateUser(user);

@@ -16,7 +16,7 @@ public class ArticleDao {
 		String sql = "INSERT INTO ARTICLE(USER_ID,TITLE,CONTENT) VALUES(?,?,?);";
 		Object[] params = { articleobj.getUserid().getId(),articleobj.getTitle(),articleobj.getContent() };
 		jdbcTemplate.update(sql, params);
-		int articleId=getArticleId(articleobj,seed);
+		int articleId=getArticleId(articleobj);
 		int categoryId=getCategoryId(articleobj,seed);
 		sql="insert into article_category(article_id,category_id) values(?,?)";
 		Object[] ac={articleId,categoryId};
@@ -46,7 +46,7 @@ public class ArticleDao {
 			return jdbcTemplate.queryForObject(sql, arg,Integer.class);
 		
 	}
-	public int  getArticleId(Article articleobj,SeedCategory seed){
+	public int  getArticleId(Article articleobj){
 		
 		String sql="select fn_get_article_id(?,?)";
 		Object[] param={articleobj.getUserid().getId(),articleobj.getTitle()};
