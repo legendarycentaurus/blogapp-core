@@ -1,8 +1,6 @@
 package com.nanda.service;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.nanda.dao.RatingDao;
 import com.nanda.exception.ServiceException;
@@ -14,13 +12,11 @@ public class RatingService {
 
 	private RatingValidator ratingValidator = new RatingValidator();
 	private RatingDao ratingDao=new RatingDao();
-	private final Logger logger = Logger.getLogger(RatingService.class.getName());
 
 	public void save(Rating Rating) throws ServiceException {
 		try {
 			ratingValidator.validateSave(Rating);
-			int rows=ratingDao.save(Rating);
-			logger.log(Level.SEVERE, "You have been Signedup: %d ", rows);
+			ratingDao.save(Rating);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Register",e);
 		}
@@ -29,8 +25,7 @@ public class RatingService {
 	public void update(Rating Rating) throws ServiceException {
 		try {
 			ratingValidator.validateUpdate(Rating);
-			int rows=ratingDao.update(Rating);
-			logger.log(Level.SEVERE, "You have been Signedup: %d ", rows);
+			ratingDao.update(Rating);
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Register",e);
 		}
@@ -39,8 +34,7 @@ public class RatingService {
 	public void delete(Rating Rating) throws ServiceException {
 		try {
 			ratingValidator.validateDelete(Rating);
-			int rows=ratingDao.delete(Rating.getId());
-			logger.log(Level.SEVERE, "Deleted %d",rows);
+		ratingDao.delete(Rating.getId());
 		} catch (ValidationException e) {
 			throw new ServiceException("Unable to Delete",e);
 		}

@@ -12,17 +12,13 @@ public class ArticleValidator {
 		ValidationUtil.isNotValid(article,"Invalid User");
 	}
 	
-	private void validateId(Integer id)throws ValidationException{
-		ValidationUtil.isNotValid(id,"Invalid Id");
-	}
+	
 	
 	private void validateUserId(Integer userId)throws ValidationException{
 		ValidationUtil.isNotValid(userId,"Invalid UserId");
 	}
 	
-	private void validateCategory(Integer userId)throws ValidationException{
-		ValidationUtil.isNotValid(userId,"Invalid Category");
-	}
+	
 	
 	private void validateTitle(String name)throws ValidationException{
 		ValidationUtil.isNotValid(name,"Invalid Name");

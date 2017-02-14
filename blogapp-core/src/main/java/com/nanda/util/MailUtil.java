@@ -5,7 +5,6 @@ import org.apache.commons.mail.Email;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
 
-import com.nanda.model.Comment;
 
 public class MailUtil {
 
