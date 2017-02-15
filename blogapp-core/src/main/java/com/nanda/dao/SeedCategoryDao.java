@@ -20,8 +20,8 @@ public class SeedCategoryDao {
 	}
 	public int update(SeedCategory obj) {
 		
-		String sql = "UPDATE SeedCategory set Category=? where id=? and userId=?";
-		Object[] params = { obj.getCategory(),obj.getId(),obj.getUserId().getId()};
+		String sql = "UPDATE SeedCategory set Category=? where id=? ";
+		Object[] params = { obj.getCategory(),obj.getId()};
 		return jdbcTemplate.update(sql, params);
 		
 	}
