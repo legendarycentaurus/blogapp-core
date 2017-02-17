@@ -23,12 +23,12 @@ public static void main(String[] args) throws ServiceException,EmailException {
 	commentObj.setComments("Comment");
 	commentServiceObj.save(commentObj);
 	
-//	commentObj.setId(6);
-//	commentServiceObj.delete(commentObj);
-//	
-//	List<Comment> commentRef=commentServiceObj.list(3);//Article id
-//	for(Comment ref:commentRef)
-//		System.out.println(ref.getComments());
+	commentObj.setId(6);
+	commentServiceObj.delete(commentObj);
+	
+	List<Comment> commentRef=commentServiceObj.list(3);//Article id
+	for(Comment ref:commentRef)
+		System.out.println(ref.getComments());
 
 }
 	
