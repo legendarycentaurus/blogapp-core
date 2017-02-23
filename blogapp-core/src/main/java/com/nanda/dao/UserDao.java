@@ -2,13 +2,15 @@ package com.nanda.dao;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.nanda.model.Role;
 import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
 
-
+@Repository
 public class UserDao {
 
 JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
