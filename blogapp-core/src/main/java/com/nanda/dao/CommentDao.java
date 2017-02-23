@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.apache.commons.mail.EmailException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.nanda.model.Comment;
 import com.nanda.util.ConnectionUtil;
 import com.nanda.util.MailUtil;
-
+@Repository
 public class CommentDao {
 
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();

@@ -5,17 +5,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.commons.mail.EmailException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nanda.dao.CommentDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
 import com.nanda.model.Comment;
 import com.nanda.validator.CommentValidator;
-
+@Service
 public class CommentService {
 
 	private CommentValidator CommentValidator = new CommentValidator();
-	private CommentDao CommentDao=new CommentDao();
+	@Autowired
+	private CommentDao CommentDao;//=new CommentDao();
 	private final Logger logger = Logger.getLogger(CommentService.class.getName());
 
 	public void save(Comment comment) throws ServiceException,EmailException {

@@ -4,16 +4,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.nanda.dao.SeedCategoryDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
 import com.nanda.model.SeedCategory;
 import com.nanda.validator.SeedCategoryValidator;
-
+@Service
 public class SeedCategoryService {
 
 	private SeedCategoryValidator seedCategoryValidator = new SeedCategoryValidator();
-	private SeedCategoryDao seedCategoryDao=new SeedCategoryDao();
+	@Autowired
+	private SeedCategoryDao seedCategoryDao;//=new SeedCategoryDao();
 	private final Logger logger = Logger.getLogger(SeedCategoryService.class.getName());
 
 	public void save(SeedCategory SeedCategory) throws ServiceException {

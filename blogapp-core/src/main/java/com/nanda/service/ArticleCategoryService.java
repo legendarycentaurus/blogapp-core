@@ -3,16 +3,20 @@ package com.nanda.service;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.nanda.dao.ArticleCategoryDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
 import com.nanda.model.ArticleCategory;
 import com.nanda.validator.ArticleCategoryValidator;
-
+@Service
 public class ArticleCategoryService {
 
 	private ArticleCategoryValidator articleCategoryValidator = new ArticleCategoryValidator();
-	private ArticleCategoryDao articleCategoryDao=new ArticleCategoryDao();
+	@Autowired
+	private ArticleCategoryDao articleCategoryDao;//=new ArticleCategoryDao();
 	private final Logger logger = Logger.getLogger(ArticleService.class.getName());
 
 	public void save(ArticleCategory articleCategory) throws ServiceException {

@@ -4,16 +4,21 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.nanda.dao.ArticleDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
 import com.nanda.model.Article;
 import com.nanda.model.SeedCategory;
 import com.nanda.validator.ArticleValidator;
+@Service
 public class ArticleService {
 
 	private ArticleValidator articleValidator = new ArticleValidator();
-	private ArticleDao articleDao=new ArticleDao();
+	@Autowired
+	private ArticleDao articleDao;//=new ArticleDao();
 	private final Logger logger = Logger.getLogger(ArticleService.class.getName());
 
 	public void publishArticle(Article article,SeedCategory seed) throws ServiceException {

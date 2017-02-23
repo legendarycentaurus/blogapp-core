@@ -2,16 +2,20 @@ package com.nanda.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.nanda.dao.RatingDao;
 import com.nanda.exception.ServiceException;
 import com.nanda.exception.ValidationException;
 import com.nanda.model.Rating;
 import com.nanda.validator.RatingValidator;
-
+@Service
 public class RatingService {
 
 	private RatingValidator ratingValidator = new RatingValidator();
-	private RatingDao ratingDao=new RatingDao();
+	@Autowired
+	private RatingDao ratingDao;//=new RatingDao();
 
 	public void save(Rating Rating) throws ServiceException {
 		try {

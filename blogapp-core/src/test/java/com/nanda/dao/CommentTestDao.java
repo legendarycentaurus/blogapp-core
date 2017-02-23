@@ -3,7 +3,9 @@ package com.nanda.dao;
 import java.util.List;
 
 import org.apache.commons.mail.EmailException;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.nanda.config.AppConfig;
 import com.nanda.exception.ServiceException;
 import com.nanda.model.Article;
 import com.nanda.model.Comment;
@@ -12,7 +14,8 @@ import com.nanda.service.CommentService;
 
 public class CommentTestDao {
 public static void main(String[] args) throws ServiceException,EmailException {
-	CommentService commentServiceObj=new CommentService();
+	AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+	CommentService commentServiceObj  = ctx.getBean(CommentService.class);//=new CommentService();
 	Comment commentObj=new Comment();
 	Article articleObj=new Article();
 	User userObj=new User();
@@ -29,7 +32,7 @@ public static void main(String[] args) throws ServiceException,EmailException {
 	List<Comment> commentRef=commentServiceObj.list(3);//Article id
 	for(Comment ref:commentRef)
 		System.out.println(ref.getComments());
-
+	ctx.close();
 }
-	
+
 }

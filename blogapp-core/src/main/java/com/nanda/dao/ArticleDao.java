@@ -3,12 +3,13 @@ package com.nanda.dao;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.nanda.model.Article;
 import com.nanda.model.SeedCategory;
 import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
-
+@Repository
 public class ArticleDao {
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
 	public int save(Article articleobj,SeedCategory seed) {

@@ -3,11 +3,12 @@ package com.nanda.dao;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.nanda.model.SeedCategory;
 import com.nanda.model.User;
 import com.nanda.util.ConnectionUtil;
-
+@Repository
 public class SeedCategoryDao {
 
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();

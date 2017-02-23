@@ -17,33 +17,33 @@ public class UserTestDao {
 		//UserService userServiceObj=new UserService();
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 		UserService userServiceObj  = ctx.getBean(UserService.class);
-		userObj.setName("naresh");
-		userObj.setPassword("naresh");
+		userObj.setName("nares");
+		userObj.setPassword("nares");
 		Role roleobj=new Role();
 		roleobj.setId(2);
 		userObj.setRoleId(roleobj);
-		userObj.setEmailId("nareshemail");
+		userObj.setEmailId("naresemail");
 		userServiceObj.signup(userObj);
 		
-//		
-//		System.out.println(userServiceObj.login(userObj));
-//		
-//		userObj.setId(18);
-//		userObj.setPassword("pavan");
-//		userServiceObj.update(userObj);
-//		
-//		userObj.setId(20);
-//		userServiceObj.delete(userObj);
-//	
-//	
-//	List<User> u=userServiceObj.list();
-//	for(User ref:u)
-//		System.out.println(ref.getName()+"  "+ref.getPassword()+"  "+ref.getEmailId());
-//
-//	User ua=userServiceObj.listParticularUser("james");
-//
-//		System.out.println(ua);
+		
+		System.out.println(userServiceObj.login(userObj));
+		
+		userObj.setId(18);
+		userObj.setPassword("pavan");
+		userServiceObj.update(userObj);
+		
+		userObj.setId(20);
+		userServiceObj.delete(userObj);
+	
+	
+	List<User> u=userServiceObj.list();
+	for(User ref:u)
+		System.out.println(ref.getName()+"  "+ref.getPassword()+"  "+ref.getEmailId());
 
+	User ua=userServiceObj.listParticularUser("james");
+
+		System.out.println(ua);
+		ctx.close();
 	
 	}
 	

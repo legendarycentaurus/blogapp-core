@@ -1,10 +1,11 @@
 package com.nanda.dao;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.nanda.model.ArticleCategory;
 import com.nanda.util.ConnectionUtil;
-
+@Repository
 public class ArticleCategoryDao {
 
 	JdbcTemplate jdbcTemplate = ConnectionUtil.getJdbcTemplate();
